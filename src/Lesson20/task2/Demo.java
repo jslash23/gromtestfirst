@@ -1,8 +1,5 @@
 package Lesson20.task2;
 
-/**
- * Created by slash22 on 16.07.2018.
- */
 import java.util.Arrays;
 import java.util.Date;
 
@@ -20,7 +17,7 @@ public class Demo {
         Controller controller = new Controller();
 
         controller.save(transaction1);
-      /*  controller.save(transaction2);
+        /*controller.save(transaction2);
         controller.save(transaction3);
         controller.save(transaction4);
         controller.save(transaction5);*/
