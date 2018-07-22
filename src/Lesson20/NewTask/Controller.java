@@ -14,15 +14,15 @@ public class Controller {//тут контролер выполняет роль
 
     }
 
-    Transaction[] transactionList()throws  Exception{
+    public Transaction[] transactionList(){
         return  transactionDAO.transactionList();
     }
 
-    Transaction[] transactionList(String city)throws  BadRequestException {
+    public Transaction[] transactionList(String city) {
         return  transactionDAO.transactionList(city);//кидаем сити
     }
 
-    Transaction[] transactionList(int amount)throws  BadRequestException{
+   public Transaction[] transactionList(int amount){
         return  transactionDAO.transactionList(amount);//кидаем амаунт
     }
 }
