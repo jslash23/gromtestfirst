@@ -159,7 +159,7 @@ public class TransactionDAO {  //класс для работы с данным�
         return result;
     }
 
-    public Transaction[] transactionList(String city) throws BadRequestException {
+    public Transaction[] transactionList(String city) throws Exception {
 
         int count = 0;
         for (Transaction transaction : transactions) {
@@ -177,9 +177,11 @@ public class TransactionDAO {  //класс для работы с данным�
             }
         }
         return resultn;
+
+
     }
 
-        public Transaction[] transactionList(Integer amount) throws BadRequestException {
+        public Transaction[] transactionList(Integer amount) throws Exception {
             int countn = 0;
             for (Transaction transaction : transactions) {
                 if (transaction != null && transaction.getAmount() == amount) {//почему equals не катит?
