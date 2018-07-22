@@ -21,11 +21,11 @@ public class Controller {//тут контролер выполняет роль
         return  transactionDAO.transactionList();
     }
 
-    Transaction[] transactionList(String city)throws  Exception {
+    Transaction[] transactionList(String city)throws  BadRequestException {
         return  transactionDAO.transactionList(city);//кидаем сити
     }
 
-    Transaction[] transactionList(int amount)throws  Exception{
+    Transaction[] transactionList(int amount)throws  BadRequestException{
         return  transactionDAO.transactionList(amount);//кидаем амаунт
     }
 }
