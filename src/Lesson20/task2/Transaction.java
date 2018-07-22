@@ -2,6 +2,7 @@ package Lesson20.task2;
 
 import java.util.Date;
 
+
 public class Transaction {
    private long id;
    private String city;

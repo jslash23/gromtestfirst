@@ -28,5 +28,4 @@ public class Controller {//тут контролер выполняет роль
     Transaction[] transactionList(int amount)throws Lesson20.task2.exceptions.BadRequestException{
         return  transactionDAO.transactionList(amount);//кидаем амаунт
     }
-
 }

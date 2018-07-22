@@ -70,17 +70,17 @@ public class TransactionDAO {  //класс для работы с данным�
         }
 
         /*/ проверка свободных ячеек в хранилище*/
-
-        int countnew = 0;
-        for (Transaction tr : transactions) {
-            if (tr != null)//если ячейка не налл то каунт ++
-                countnew++;
-            if (countnew > transactions.length - 1)
-                throw new InternalServerException("No free space in storage " + tr.getId());
+        int countm =0;
+        for (int a = 0; a < transactions.length; a++) {
+            if (transactions[a] == null) {//если ячейка  налл то a++
+                 countm ++;
+            }
+            if (countm == 0)
+            throw new InternalServerException("No free space in storage " + transactions[a].getId());
         }
-
         return transaction;
     }
+
 
     /*/  сумма (денег) транзакций за день больше дневного лимита*/
 
@@ -178,7 +178,6 @@ public class TransactionDAO {  //класс для работы с данным�
         }
         return resultn;
     }
-
 
         public Transaction[] transactionList(Integer amount) throws BadRequestException {
             int countn = 0;
