@@ -1,5 +1,7 @@
 package Lesson20.task2;
 
+import Lesson20.task.exception.BadRequestException;
+
 //класс контроллер принимает запросы пользователя распределяет их и вызывает  часть нужного бекенда
 //которая отвечает за обработку того или иниго запроса
 //дао отвечает за работу с данными контроллер отвечает за роутинг запросов на сервер
@@ -15,16 +17,16 @@ public class Controller {//тут контролер выполняет роль
         //return response
     }
 
-    Transaction[] transactionList(){
+    Transaction[] transactionList()throws  Exception{
         return  transactionDAO.transactionList();
     }
 
-    Transaction[] transactionList(String city){
-        return  transactionDAO.transactionList();
+    Transaction[] transactionList(String city) throws Lesson20.task2.exceptions.BadRequestException{
+        return  transactionDAO.transactionList(city);//кидаем сити
     }
 
-    Transaction[] transactionList(int amount){
-        return  transactionDAO.transactionList();
+    Transaction[] transactionList(int amount)throws Lesson20.task2.exceptions.BadRequestException{
+        return  transactionDAO.transactionList(amount);//кидаем амаунт
     }
 
 }

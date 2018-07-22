@@ -15,14 +15,14 @@ public class Demo {
 
         Transaction[] transactions = new Transaction[]{transaction1,transaction2,transaction3};
         Controller controller = new Controller();
-
-        controller.save(transaction1);
-        /*controller.save(transaction2);
+        //controller.save(transaction1);
+        //controller.save(transaction2);
         controller.save(transaction3);
         controller.save(transaction4);
-        controller.save(transaction5);*/
+        controller.save(transaction5);
 
         System.out.println(Arrays.toString(controller.transactionList()));
-
+        System.out.println(Arrays.toString(controller.transactionList("Kiev")));
+        System.out.println(Arrays.toString(controller.transactionList(10)));
     }
 }

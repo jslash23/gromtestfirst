@@ -1,8 +1,5 @@
 package Lesson20.task2;
 
-/**
- * Created by slash22 on 30.06.2018.
- */
 public class Utils {
     private int limitTransactionsPerDayCount = 10;//счетчик  лимитов транзакций за день
     private int  limitTransactionsPerDayAmount = 100;//дневной лимит денег за день   точно
@@ -22,7 +19,7 @@ public class Utils {
         return limitSimpleTransactionAmount;
     }
 
-    public String[] getSities() {
+    public String[] getCities() {
         return cities;
     }
 }

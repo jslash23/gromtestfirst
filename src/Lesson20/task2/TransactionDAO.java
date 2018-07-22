@@ -10,8 +10,8 @@ import java.util.Date;
 
 public class TransactionDAO {  //класс для работы с данными
 
-    private  Transaction[] transactions = new Transaction[10];
-    private  Utils utils = new Utils();
+    private Transaction[] transactions = new Transaction[10];
+    private Utils utils = new Utils();
 
     public Transaction save(Transaction transaction) throws Exception {
         if (transaction == null) {
@@ -46,7 +46,7 @@ public class TransactionDAO {  //класс для работы с данным�
         }
 
         //если сумма денег в транзакциях за заданый день > дневной лимит транзакций(денег) за  день то кидаем ошибку
-        if (sum > utils.getLimitTransactionsPerDayAmount()) {//
+        if (sum > utils.getLimitTransactionsPerDayAmount() + transaction.getAmount()) {//
             throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + ". Can't be saved");
         }
         //если количество транзакций  > счетчик  лимитов транзакций за день  то кидаем ошибку
@@ -55,18 +55,18 @@ public class TransactionDAO {  //класс для работы с данным�
         }
 
         /*/ проверка допустимых городов*/
-        int a = 0;
-        for (Transaction tr : transactions) {
-            if (tr != null) {
-                if (tr.getCity().equals("Kiev")  || tr.getCity().equals("Odessa")) {
-                    throw new BadRequestException("Sity " + tr.getCity() + " not allowable ");
+        int countn = 0;
+        for (String cities : utils.getCities()) {
+            if (cities != null) {
+                if (transaction.getCity().equalsIgnoreCase(cities)) {
+                    throw new BadRequestException("Sity " + cities + " not allowable ");
                 }
             }
-            if (tr == null) {
-                transactions[a] = transaction;
+            if (cities == null) {
+                transactions[countn] = transaction;
                 break;
             }
-            a++;
+            countn++;
         }
 
         /*/ проверка свободных ячеек в хранилище*/
@@ -92,7 +92,7 @@ public class TransactionDAO {  //класс для работы с данным�
     //передали методу дату транзакции которую мы хотим сохранить
     //таким образом мы получили все транзакции за день моей сохраняемой транзакции
 
-    private  Transaction[] getTransactionsPerDay(Date dateOfCurTransaction) {
+    private Transaction[] getTransactionsPerDay(Date dateOfCurTransaction) {
         //dateOfCurTransaction это входящая дата
 
         Calendar calendar = Calendar.getInstance();//создали объект Календарь
@@ -133,50 +133,71 @@ public class TransactionDAO {  //класс для работы с данным�
     }
 
 
-    public Transaction[] transactionList() {
+    public Transaction[] transactionList() throws Exception {
        /*
-       Возвращать массив транзакций без налов. Если нет элементов - пустой массив.
+       Метод должен  возвращать массив транзакций без налов. Если нет элементов - пустой массив.
         Модификатор доступа не забудь указать. И в методе не должно быть ничего лишнего
          при проверке  (да и во всем коде, как при итоговой сдачи проекта).
           У меня валидатор жестко ругался на саут.
+          Тут массив транзакций которые мы обработали?
         */
 
         int count = 0;
         for (Transaction transaction : transactions) {
-
-            if (transaction != null) {
-                while (count < transactions.length - 1)
-                    count++;
-            } else  {
-                while (count < transactions.length - 1)
-                    count++;
-            }
+            if (transaction != null)
+                count++;
         }
 
         Transaction[] result = new Transaction[count];
         int index = 0;
         for (Transaction transaction : transactions) {
-            if (transaction == null) {
-                while (index < transactions.length - 1) {
-                    result[index] = null;
-                    index++;
-                }
-            } else {
-                while (index < transactions.length - 1) {
-                    result[index] = transaction;
-                    index++;
-                }
+            if (transaction != null) {
+                result[index] = transaction;
+                index++;
             }
         }
         return result;
     }
 
-    public Transaction[] transactionList(String city) {
-        return null;
+    public Transaction[] transactionList(String city) throws BadRequestException {
+
+        int count = 0;
+        for (Transaction transaction : transactions) {
+            if (transaction != null && transaction.getCity().equalsIgnoreCase(city)) {
+                count++;
+            }
+        }
+
+        Transaction[] resultn = new Transaction[count];
+        int index = 0;
+        for (Transaction transaction : transactions) {
+            if (transaction != null && transaction.getCity().equalsIgnoreCase(city)) {
+                resultn[index] = transaction;
+                index++;//проверить
+            }
+        }
+        return resultn;
     }
 
-    public Transaction[] transactionList(int amount) {
-        return null;
+
+        public Transaction[] transactionList(Integer amount) throws BadRequestException {
+            int countn = 0;
+            for (Transaction transaction : transactions) {
+                if (transaction != null && transaction.getAmount() == amount) {//почему equals не катит?
+                    countn++;
+                }
+            }
+
+            Transaction[] resultn = new Transaction[countn];
+            int index = 0;
+            for (Transaction transaction : transactions) {
+                if (transaction != null && transaction.getAmount()== amount) {
+                    resultn[index] = transaction;
+                    index++;
+                }
+            }
+            return resultn;
+        }
     }
-}
+
 
