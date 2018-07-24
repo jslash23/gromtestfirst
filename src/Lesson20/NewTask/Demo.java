@@ -16,8 +16,8 @@ public class Demo {
         Controller controller = new Controller();
         controller.save(transaction1);
         controller.save(transaction2);
-        //controller.save(transaction3);
-       // controller.save(transaction4);
+        controller.save(transaction3);
+        controller.save(transaction4);
         System.out.println(controller.save(transaction5));
 
 

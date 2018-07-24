@@ -59,8 +59,6 @@ public class TransactionDAO {  //класс для работы с данным�
 
 
             if (((cities != null)&&(transaction.getCity().equalsIgnoreCase(cities)))) {
-
-                transactions[countSity] = transaction;
                 countSity++;
             }
         }
@@ -72,7 +70,9 @@ public class TransactionDAO {  //класс для работы с данным�
         int countPlace = 0;//сюда нужно добавлять счетчик наши транзакции для заполнения массива
         for (int a = 0; a < transactions.length; a++) {
             if (transactions[a] == null) {//если ячейка  налл то a++
+                transactions[a] = transaction;
                 countPlace++;
+                return transactions[a];
             }
         }
         if (countPlace == 0)
