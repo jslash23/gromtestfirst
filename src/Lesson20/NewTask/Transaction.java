@@ -67,4 +67,16 @@ public class Transaction {
     public Date getDateCreated() {
         return dateCreated;
     }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", amount=" + amount +
+                ", description='" + description + '\'' +
+                ", type=" + type +
+                ", dateCreated=" + dateCreated +
+                '}';
+    }
 }

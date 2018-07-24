@@ -54,29 +54,30 @@ public class TransactionDAO {  //класс для работы с данным�
         }
 
         // проверка допустимых городов*/
-        int countn = 0;
+        int countSity = 0;
         for (String cities : utils.getCities()) {
-            if (cities != null) {
-                if (transaction.getCity().equalsIgnoreCase(cities)) {
-                    throw new BadRequestException("Sity " + cities + " not allowable ");
-                }
+
+
+            if (((cities != null)&&(transaction.getCity().equalsIgnoreCase(cities)))) {
+
+                transactions[countSity] = transaction;
+                countSity++;
             }
-            if (cities == null) {
-                transactions[countn] = transaction;
-                break;
-            }
-            countn++;
+        }
+        if (countSity == 0) {
+            throw new BadRequestException("Sity " + transaction.getCity() + " not allowable ");
         }
 
 
-        int countm = 0;
+        int countPlace = 0;//сюда нужно добавлять счетчик наши транзакции для заполнения массива
         for (int a = 0; a < transactions.length; a++) {
             if (transactions[a] == null) {//если ячейка  налл то a++
-                countm++;
+                countPlace++;
             }
-            if (countm == 0)
-                throw new InternalServerException("No free space in storage " + transactions[a].getId());
         }
+        if (countPlace == 0)
+            throw new InternalServerException("No free space in storage " + transaction.getId());
+
         return transaction;
     }
 
@@ -97,8 +98,6 @@ public class TransactionDAO {  //класс для работы с данным�
                 int trMonth = calendar.get(Calendar.MONTH);
                 int trDay = calendar.get(Calendar.DAY_OF_MONTH);
                 if (trMonth == month && trDay == day)//если месяц и число входящей транзакции и транзакции из цикла
-
-
                     count++;
             }
         }
@@ -124,19 +123,26 @@ public class TransactionDAO {  //класс для работы с данным�
 
         //Метод должен  возвращать массив транзакций без налов. Если нет элементов - пустой массив.
 
-        int count = 0;
+        int count = 0;//здесь метод работает с последним возвращенным транзакцией а это Одесса
         for (Transaction transaction : transactions) {
             if (transaction != null)
                 count++;
         }
 
         Transaction[] result = new Transaction[count];
+
+       /* int index = 0;
+        for (int i = 0; i < result.length; i++) {
+            for (Transaction transaction : transactions) {
+                if (transaction != null)
+                    result[index] = transaction;
+            }
+        }*/
         int index = 0;
         for (Transaction transaction : transactions) {
-            if (transaction != null) {
+            if (transaction != null)
                 result[index] = transaction;
                 index++;
-            }
         }
         return result;
     }
@@ -150,7 +156,11 @@ public class TransactionDAO {  //класс для работы с данным�
             }
         }
 
+
         Transaction[] resultn = new Transaction[count];
+        if (count == 0){
+            return resultn;
+        }
         int index = 0;
         for (Transaction transaction : transactions) {
             if (transaction != null && transaction.getCity().equalsIgnoreCase(city)) {
@@ -171,6 +181,9 @@ public class TransactionDAO {  //класс для работы с данным�
         }
 
         Transaction[] resultn = new Transaction[countn];
+        if (countn == 0){
+            return resultn;
+        }
         int index = 0;
         for (Transaction transaction : transactions) {
             if (transaction != null && transaction.getAmount() == amount) {
