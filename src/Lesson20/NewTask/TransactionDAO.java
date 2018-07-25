@@ -45,11 +45,11 @@ public class TransactionDAO {  //класс для работы с данным�
             count++;
         }
 
-        if (sum > utils.getLimitTransactionsPerDayAmount() + transaction.getAmount()) {//
+        if (sum + transaction.getAmount() > utils.getLimitTransactionsPerDayAmount() ) {//
             throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + ". Can't be saved");
         }
 
-        if (count > utils.getLimitTransactionsPerDayCount()) {//
+        if (count + 1 > utils.getLimitTransactionsPerDayCount()) {//
             throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + ". Can't be saved");
         }
 
@@ -75,6 +75,7 @@ public class TransactionDAO {  //класс для работы с данным�
                 return transactions[a];
             }
         }
+
         if (countPlace == 0)
             throw new InternalServerException("No free space in storage " + transaction.getId());
 
