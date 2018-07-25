@@ -25,13 +25,14 @@ public class TransactionDAO {  //класс для работы с данным�
 //  не хватило места кидаем ошибку ИнтерналСерверЭксепшн, где нехватило места? Нехватило места в хранилище
 
         validate(transaction);
+            int ind ;
+            for (ind = 0 ; ind < transactions.length; ind++) {
+                transactions[ind] = transaction;
+                break;
+            }
+        return transactions[ind];
 
-            /*for (int a = 0; a < transactions.length; a++) {
-                transactions[a] = transaction;
-            break;
-            }*/
-
-        return transaction;//возвращаем ту транзакцию которую сохранили в хранилище
+        //возвращаем ту транзакцию которую сохранили в хранилище
     }
 
     private Transaction validate(Transaction transaction) throws Exception {
@@ -75,9 +76,9 @@ public class TransactionDAO {  //класс для работы с данным�
         int countPlace = 0;//сюда нужно добавлять счетчик наши транзакции для заполнения массива
         for (int a = 0; a < transactions.length; a++) {
             if (transactions[a] == null) {//если ячейка  налл то a++
-                transactions[a] = transaction;
+                //transactions[a] = transaction;
                 countPlace++;
-                return transactions[a];
+               // return transactions[a];
             }
         }
 

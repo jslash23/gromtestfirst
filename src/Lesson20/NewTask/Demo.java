@@ -14,8 +14,9 @@ public class Demo {
 
         Transaction[] transactions = new Transaction[]{transaction1,transaction2,transaction3,transaction4,transaction5};
         Controller controller = new Controller();
-        controller.save(transaction1);
-        controller.save(transaction2);
+        System.out.println(controller.save(transaction1));
+        System.out.println(controller.save(transaction2));
+        System.out.println(" ");
         //controller.save(transaction3);
         //controller.save(transaction4);
         //System.out.println(controller.save(transaction5));
