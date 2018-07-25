@@ -28,6 +28,7 @@ public class TransactionDAO {  //класс для работы с данным�
 
             for (int a = 0; a < transactions.length; a++) {
                 transactions[a] = transaction;
+            break;
             }
 
         return transaction;//возвращаем ту транзакцию которую сохранили в хранилище
@@ -80,9 +81,9 @@ public class TransactionDAO {  //класс для работы с данным�
             }
         }
 
-        if (countPlace == 0)
-            throw new InternalServerException("No free space in storage " + transaction.getId());
-
+            if (countPlace == 0) {
+                throw new InternalServerException("No free space in storage " + transaction.getId());
+            }
         return transaction;
     }
 
@@ -136,7 +137,7 @@ public class TransactionDAO {  //класс для работы с данным�
 
         Transaction[] result = new Transaction[count];
 
-      
+
         int index = 0;
         for (Transaction transaction : transactions) {
             if (transaction != null)
