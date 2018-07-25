@@ -26,10 +26,10 @@ public class TransactionDAO {  //класс для работы с данным�
 
         validate(transaction);
 
-            for (int a = 0; a < transactions.length; a++) {
+            /*for (int a = 0; a < transactions.length; a++) {
                 transactions[a] = transaction;
             break;
-            }
+            }*/
 
         return transaction;//возвращаем ту транзакцию которую сохранили в хранилище
     }
@@ -75,9 +75,9 @@ public class TransactionDAO {  //класс для работы с данным�
         int countPlace = 0;//сюда нужно добавлять счетчик наши транзакции для заполнения массива
         for (int a = 0; a < transactions.length; a++) {
             if (transactions[a] == null) {//если ячейка  налл то a++
-                //transactions[a] = transaction;
+                transactions[a] = transaction;
                 countPlace++;
-                //return transactions[a];
+                return transactions[a];
             }
         }
 
