@@ -26,6 +26,10 @@ public class TransactionDAO {  //класс для работы с данным�
 
         validate(transaction);
 
+            for (int a = 0; a < transactions.length; a++) {
+                transactions[a] = transaction;
+            }
+
         return transaction;//возвращаем ту транзакцию которую сохранили в хранилище
     }
 
@@ -45,11 +49,11 @@ public class TransactionDAO {  //класс для работы с данным�
             count++;
         }
 
-        if (sum + transaction.getAmount() > utils.getLimitTransactionsPerDayAmount() ) {//
+        if ((sum + transaction.getAmount()) > utils.getLimitTransactionsPerDayAmount() ) {//
             throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + ". Can't be saved");
         }
 
-        if (count + 1 > utils.getLimitTransactionsPerDayCount()) {//
+        if ((count + 1) > utils.getLimitTransactionsPerDayCount()) {//
             throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + ". Can't be saved");
         }
 
@@ -70,9 +74,9 @@ public class TransactionDAO {  //класс для работы с данным�
         int countPlace = 0;//сюда нужно добавлять счетчик наши транзакции для заполнения массива
         for (int a = 0; a < transactions.length; a++) {
             if (transactions[a] == null) {//если ячейка  налл то a++
-                transactions[a] = transaction;
+                //transactions[a] = transaction;
                 countPlace++;
-                return transactions[a];
+                //return transactions[a];
             }
         }
 
@@ -132,13 +136,7 @@ public class TransactionDAO {  //класс для работы с данным�
 
         Transaction[] result = new Transaction[count];
 
-       /* int index = 0;
-        for (int i = 0; i < result.length; i++) {
-            for (Transaction transaction : transactions) {
-                if (transaction != null)
-                    result[index] = transaction;
-            }
-        }*/
+      
         int index = 0;
         for (Transaction transaction : transactions) {
             if (transaction != null)
