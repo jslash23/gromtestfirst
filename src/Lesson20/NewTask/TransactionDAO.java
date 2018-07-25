@@ -25,13 +25,15 @@ public class TransactionDAO {  //класс для работы с данным�
 //  не хватило места кидаем ошибку ИнтерналСерверЭксепшн, где нехватило места? Нехватило места в хранилище
 
         validate(transaction);
-            int ind ;
-            for (ind = 0 ; ind < transactions.length; ind++) {
-                transactions[ind] = transaction;
-                break;
-            }
-        return transactions[ind];
 
+        //сюда нужно добавлять счетчик наши транзакции для заполнения массива
+        for (int ind = 0; ind < transactions.length; ind++) {
+            if (transactions[ind] == null) {//если ячейка  налл то a++
+                transactions[ind] = transaction;
+                 return transactions[ind];
+            }
+        }
+            throw new InternalServerException("No free space in storage " + transaction.getId());
         //возвращаем ту транзакцию которую сохранили в хранилище
     }
 
@@ -73,18 +75,7 @@ public class TransactionDAO {  //класс для работы с данным�
         }
 
 
-        int countPlace = 0;//сюда нужно добавлять счетчик наши транзакции для заполнения массива
-        for (int a = 0; a < transactions.length; a++) {
-            if (transactions[a] == null) {//если ячейка  налл то a++
-                //transactions[a] = transaction;
-                countPlace++;
-               // return transactions[a];
-            }
-        }
 
-            if (countPlace == 0) {
-                throw new InternalServerException("No free space in storage " + transaction.getId());
-            }
         return transaction;
     }
 
