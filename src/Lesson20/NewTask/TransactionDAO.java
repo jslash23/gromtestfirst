@@ -117,7 +117,7 @@ public class TransactionDAO {  //класс для работы с данным�
     }
 
 
-    public Transaction[] transactionList() {
+    public Transaction[] transactionList() {// transactionList
 
         //Метод должен  возвращать массив транзакций без налов. Если нет элементов - пустой массив.
 
