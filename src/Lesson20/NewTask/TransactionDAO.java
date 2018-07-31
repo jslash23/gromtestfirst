@@ -66,7 +66,7 @@ public class TransactionDAO {  //класс для работы с данным�
         for (String cities : utils.getCities()) {
 
 
-            if (((cities != null)&&(transaction.getCity().equalsIgnoreCase(cities)))) {
+            if ((cities != null)&&(transaction.getCity().equalsIgnoreCase(cities))) {
                 countSity++;
             }
         }
@@ -108,9 +108,10 @@ public class TransactionDAO {  //класс для работы с данным�
                 int trMonth = calendar.get(Calendar.MONTH);
                 int trDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-                if (trMonth == month && trDay == day)
+                if (trMonth == month && trDay == day) {
                     result[index] = transaction;
-                index++;
+                    index++;
+                }
             }
         }
         return result;
@@ -132,9 +133,10 @@ public class TransactionDAO {  //класс для работы с данным�
 
         int index = 0;
         for (Transaction transaction : transactions) {
-            if (transaction != null)
+            if (transaction != null) {
                 result[index] = transaction;
                 index++;
+            }
         }
         return result;
     }
