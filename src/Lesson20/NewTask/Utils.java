@@ -1,9 +1,9 @@
 package Lesson20.NewTask;
 
 public class Utils   {
-    private int limitTransactionsPerDayCount = 2;//счетчик  лимитов транзакций за день
-    private int  limitTransactionsPerDayAmount = 100;//дневной лимит денег за день   точно
-    private int limitSimpleTransactionAmount = 80;//указаный лимит  точно
+    private int limitTransactionsPerDayCount = 2;
+    private int  limitTransactionsPerDayAmount = 100;
+    private int limitSimpleTransactionAmount = 80;
     private String[] cities ={"Kiev","Odessa"};
 
 
