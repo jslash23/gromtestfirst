@@ -169,7 +169,7 @@ public class TransactionDAO {  //класс для работы с данным�
     public Transaction[] transactionList(Integer amount) {
         int countn = 0;
         for (Transaction transaction : transactions) {
-            if (transaction != null && transaction.getAmount() == amount) {//почему equals не катит?
+            if (transaction != null && transaction.getAmount() == amount) {
                 countn++;
             }
         }
