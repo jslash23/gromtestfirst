@@ -59,7 +59,7 @@ public class TransactionDAO {
             }
         }
         if (countSity == 0) {
-            throw new BadRequestException("Sity " + transaction.getCity() + " not allowable ");
+            throw new BadRequestException("Sity " + transaction.getCity() + transaction.getId() + " not allowable ");
         }
 
         return transaction;
@@ -147,7 +147,7 @@ public class TransactionDAO {
 
     }
 
-    public Transaction[] transactionList(Integer amount) {
+    public Transaction[] transactionList(int amount) {
         int countn = 0;
         for (Transaction transaction : transactions) {
             if (transaction != null && transaction.getAmount() == amount) {
