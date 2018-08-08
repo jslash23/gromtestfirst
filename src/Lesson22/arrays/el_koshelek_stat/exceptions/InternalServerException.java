@@ -1,4 +1,4 @@
-package Lesson20.task2.exceptions;
+package Lesson22.arrays.el_koshelek_stat.exceptions;
 
 public class InternalServerException extends Exception   {
     public InternalServerException(String message)

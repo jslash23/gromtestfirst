@@ -1,7 +1,6 @@
-package Lesson20.task2;
+package Lesson22.arrays.el_koshelek_stat;
 
 import java.util.Date;
-
 
 public class Transaction {
    private long id;
@@ -10,6 +9,7 @@ public class Transaction {
    private String description;
    private TransactionType type;
    private Date dateCreated;
+   //private static Transaction[] transactions = new Transaction[10];
 
     public Transaction(long id, String city, int amount, String description, TransactionType type, Date dateCreated) {
         this.id = id;
@@ -18,6 +18,7 @@ public class Transaction {
         this.description = description;
         this.type = type;
         this.dateCreated = dateCreated;
+
     }
 
     @Override
@@ -66,5 +67,17 @@ public class Transaction {
 
     public Date getDateCreated() {
         return dateCreated;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", city='" + city + '\'' +
+                ", amount=" + amount +
+                ", description='" + description + '\'' +
+                ", type=" + type +
+                ", dateCreated=" + dateCreated +
+                '}';
     }
 }
