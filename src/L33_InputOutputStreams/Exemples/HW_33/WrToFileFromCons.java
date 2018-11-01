@@ -28,7 +28,6 @@ public class WrToFileFromCons {
         }
         finally {
             bufread.close();
-            //must close bufer of writer
         }
     }
 
@@ -50,7 +49,6 @@ public class WrToFileFromCons {
                    System.err.println("Can't write to file with path " + path );
                }
                break;
-            //System.out.println("Please enter command WR when you finished enter you text");
         }
 
         IOUtils.closeQuietly(writer);
