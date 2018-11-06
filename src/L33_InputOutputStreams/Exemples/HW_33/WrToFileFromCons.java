@@ -15,8 +15,8 @@ public class WrToFileFromCons {
     public static void writeToFileFromConsol(String path) throws IOException{
 
         BufferedReader bufread = new BufferedReader(new  InputStreamReader(System.in));//объект который читает целыми строками
-        System.out.println("Enter file content to write in the file");
 
+        System.out.println("Enter file content to write in the file");
         String text = bufread.readLine();
 
         try{
@@ -36,13 +36,15 @@ public class WrToFileFromCons {
         BufferedWriter bfWriter = null;
 
             while ((text) != null){
-               try {if (TestWR(text)){
+               try {
+                   if (TestWR(text)){
                    writer = new FileWriter(path,true);
                    bfWriter = new BufferedWriter(writer);
 
-                   bfWriter.append(text);
-                   bfWriter.append("\n");
                    bfWriter.append("3333333333333");
+                   bfWriter.append("\n");
+                   bfWriter.append(text);
+
                    System.out.println("new text was writen");
                }
             }catch (IOException e){
@@ -50,7 +52,6 @@ public class WrToFileFromCons {
                }
                break;
         }
-
         IOUtils.closeQuietly(writer);
         IOUtils.closeQuietly(bfWriter);
     }

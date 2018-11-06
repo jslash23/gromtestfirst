@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class Demo {
     public static void main(String[] args) throws IOException {
-        WrToFileFromCons.writeToFileFromConsol("C:/Users/slash22/Desktop/test2.txt");
+        WrToFileFromCons.writeToFileFromConsol("C:/Users/slash22/Desktop/test1.txt");
+       // ReadFileFromCons.readFileByConsolPath();
     }
 }
