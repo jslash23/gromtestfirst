@@ -38,18 +38,7 @@ public class UserRepository {
         return user;
     }
 
-    /*public  void writeFileContent(User user, String fileToPAth) throws Exception{
-        //Проверить что файлы есть +
-        //проверить права +
-        //Считать контент файла from +
-        //считать контент файла to +
-
-        registerUser(User user, String fileToPAth );
-
-        validate(fileFromPath,fileToPAth);
-        writeToFile(fileToPAth,readFromFile(fileFromPath));
-
-    }*/
+   
 
     public Integer CreateId(Integer min, Integer max) {
         int diff = max - min;
