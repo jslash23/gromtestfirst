@@ -1,6 +1,11 @@
 package L35.repository;
 
 import L35.model.User;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+
+import java.io.*;
+import java.nio.file.StandardCopyOption;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,29 +21,64 @@ public class UserRepository {
 
     //после замапивания зписываем наш мап файл в файл на рабочем столе
 
+
+
     public User registerUser(User user) {
         //save user to db (file)
         //юзер на вход передаётся без поля id потому что айдишник генерем мы
         //юзер ай ди не вводит
 
-        Map<Integer, User> usMap1 = new HashMap<>();
+        Map<Integer, User> usMap = new HashMap<>();
 
 //айдишник должен генерится с уникальным номером, он не должен повторяться
 
         int id = (CreateId(0, 200));
         if (user.getId() != id) {
-            usMap1.put(id, user);
+            usMap.put(id, user);
 
-            System.out.println(usMap1);
+            String fileToPath = "C:/Users/slash22/Desktop/RepositoryDb.txt";
+            writeToFile(fileToPath, readFromFile(usMap));
+
+            System.out.println(usMap);
+
+
             return user;
 
         } else
-            usMap1.put(CreateId(0, 200), user);
-            System.out.println(usMap1);
+            usMap.put(CreateId(0, 200), user);
+            System.out.println(usMap);
         return user;
     }
 
-   
+    private static StringBuffer readFromFile(Map <Integer,User> usMap) {
+        StringBuffer res = new StringBuffer();
+
+        try {
+            res.append(usMap);
+        }
+
+        catch (Exception e) {
+            System.out.println("Reading from file " + res + " failed");
+        }
+
+        finally {
+            //IOUtils.closeQuietly(res);
+        }
+   return  res;
+    }
+
+    private static void   writeToFile(String path, StringBuffer contentToWrite){
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path))) {
+            bufferedWriter.append(contentToWrite);
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File does not exist");
+        } catch (IOException e) {
+            System.out.println("Reading from file " + path + " failed");
+        }
+    }
+
+
 
     public Integer CreateId(Integer min, Integer max) {
         int diff = max - min;
