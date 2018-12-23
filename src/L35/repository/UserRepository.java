@@ -22,7 +22,6 @@ public class UserRepository {
     //после замапивания зписываем наш мап файл в файл на рабочем столе
 
 
-
     public User registerUser(User user) {
         //save user to db (file)
         //юзер на вход передаётся без поля id потому что айдишник генерем мы

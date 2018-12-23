@@ -6,10 +6,11 @@ import L35.model.User;
 
 import java.util.*;
 
-public class UserService implements Validation {
+public class UserService implements Validation{
 
     private UserRepository userRepository = new UserRepository();
-   public User registerUser  (User user) {
+
+    public User registerUser  (User user) {
 
        //check business logic
        //объекты не должны содержать пустых полей
