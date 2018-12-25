@@ -9,4 +9,10 @@ public class HotelController   {
         return hotelService.findHotelByName(name);//
 
     }
+
+    public static  String findHotelByCity(String city) throws Exception{
+
+        return hotelService.findHotelByCity(city);//
+
+    }
 }

@@ -3,6 +3,7 @@ package L35.service;
 import L35.model.Hotel;
 import L35.repository.HotelRepository;
 
+
 public class HotelService   {
 
     private HotelRepository hotelRepository = new HotelRepository();
@@ -34,4 +35,26 @@ public class HotelService   {
         }
         return false;
     }
+
+    public  String findHotelByCity (String city) throws Exception {
+
+        if (ValidateCity(city)){
+            return hotelRepository.findHotelByCity(city);
+        }
+
+        System.err.println("you filds can't be null!");
+
+        return null;
+    }
+
+
+    public  boolean ValidateCity(String city){
+
+        if (!city.isEmpty() && (city.matches("^[а-яА-ЯёЁa-zA-Z]+$")) ){
+            return true;
+        }
+        return false;
+    }
+
+
 }

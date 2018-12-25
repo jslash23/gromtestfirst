@@ -25,7 +25,7 @@ public class DemoUser {
         Room room1 = new Room(001,2,352.50,true,true,new Date(),hotel1);
         Room room2 = new Room(002,3,355.50,true,false,new Date(),hotel2);
         rooms.add(room1);
-        
+
         User user1 = new User(111,"Dimon","Ukraine",rooms);
 
        /*  private long id;
@@ -49,6 +49,9 @@ public class DemoUser {
         UserController.registerUser(user1);
         System.out.println();
         System.out.println("findHotelByName:   ");
-        HotelController.findHotelByName("Kiev");
+        HotelController.findHotelByName("KievPalace");
+        System.out.println("findHotelByCity:   ");
+        HotelController.findHotelByCity("Herson");
     }
+
 }
