@@ -4,6 +4,7 @@ import L35.model.Hotel;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.util.*;
 import java.util.Iterator;
 
@@ -16,30 +17,28 @@ public class HotelRepository {
     //находим гостиницу по имени
     //возвращаем объект
 
+   public static ArrayList<Hotel> hotelsByName = new ArrayList<>();
+   public static ArrayList<Hotel> hotelsByCity = new ArrayList<>();
 
-    public static ArrayList<Hotel> HotelMap = new ArrayList<>();
+    public ArrayList<Hotel> findHotelByName(String name, String path) throws Exception {
 
-
-    public String findHotelByName(String name) throws Exception {
-        List<Hotel>  Hotels = new ArrayList<>();
-
-        Hotels = findStringByName(readFromFile("C:/Users/slash22/Desktop/HotelDb.txt"), name);
-        String hotelsByName = Hotels.toString();
-        System.out.println("Our hotels by name : " + hotelsByName);
-        return  hotelsByName ;
+        ArrayList <Hotel> wF = writeToFile(readFromFile(path));
+        hotelsByName = findStringByName(wF, name);
+       //String hotelsByName1 = hotelsByName.toString();
+        System.out.println(hotelsByName);
+        return hotelsByName;
     }
 
-    public String findHotelByCity(String city) throws Exception {
-        List<Hotel>  Hotels = new ArrayList<>();
-        Hotels = findStringByCity(readFromFile("C:/Users/slash22/Desktop/HotelDb.txt"), city);
-        String hotelsByCity = Hotels.toString();
+    public ArrayList<Hotel> findHotelByCity(String city, String path) throws Exception {
 
-        System.out.println("Our hotels by City : " + hotelsByCity);
-        return  hotelsByCity ;
+        hotelsByCity = findStringByCity(writeToFile(readFromFile(path)), city);
+        //String hotelsByCity = Hotels.toString();
+        System.out.println(hotelsByCity);
+        return hotelsByCity;
     }
 
 
-    public static Integer CreateId(Integer min, Integer max) {
+    private static Integer CreateId(Integer min, Integer max) {
         int diff = max - min;
         Random random = new Random();
         int i = random.nextInt(diff + 1);
@@ -47,87 +46,105 @@ public class HotelRepository {
         return i;
     }
 
-    private static ArrayList<Hotel> readFromFile(String path) throws Exception {//
+
+    //тут нужно использовать мап иначе затирается предыдущий объект хостел
+    private static StringBuffer readFromFile(String path) throws Exception {//
+
+        StringBuffer res = new StringBuffer();
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
 
             while ((line = br.readLine()) != null) {
-
-                //делаем из стринга массив стрингов
-                //каждый стринг преобразуем в нужное значение
-
-                String[] lines = line.split("[ ]");
-                convertDateFromFile(lines);
-
-                //System.out.println(line + "  read");
+                res.append(line);
+                res.append("\n");
             }
-
-        } catch (FileNotFoundException e) {
-            System.err.println("File does not exist");
         } catch (IOException e) {
             System.out.println("Reading from file " + path + " failed");
         }
-
-        return HotelMap;
+        return res;
     }
 
-    public static ArrayList<Hotel> convertDateFromFile(String[] lines) {
-        Hotel newHotel = new Hotel(00, null, null, null, null);
+    //Почему программа заменяет файлы в колекции АрейЛист HotelMap?
+    private static ArrayList<Hotel> writeToFile(StringBuffer contentToWrite) throws Exception {
+        Hotel nHotel = new Hotel(00, null, null, null, null);
+        ArrayList<Hotel> HotelMap = new ArrayList<>();
 
-        int i = 0;
+        String convString = contentToWrite.toString();
+        String[] myList = convString.trim().split(",");
 
-        byte[] convBytes = lines[i].getBytes(); //
+        int i = 1;
+        for (int j = 0; j < 2; j++) {
+            {
+                long id = (CreateId(0, 200));
+                nHotel.setId(id);
+            }
 
-        if (convBytes.equals(null)){
-            long id = (CreateId(0, 200));
-            newHotel.setId(id);
-        }
+            //String s = myList[i];
+            //String s = myList[i];
+            // long n = Long.valueOf(long);
+            //long number = Long.valueOf(s).longValue();
+            //Long  sNew = new Long(s);
 
-        else {
+            /*try {
+                long number  = Long.parseLong(s);
 
-            newHotel.setId(convBytes[i]);
+            } catch (NumberFormatException e) {
+                System.out.println(s + " is not a valid number.");
+            }*/
+
+            //long number = new Long(s).longValue();
+            //long n = Long.parseLong(s);
+
+            nHotel.setName(myList[i]);
             i++;
-        }
-        newHotel.setName(lines[i]);
-        i++;
-        newHotel.setCountry(lines[i]);
-        i++;
-        newHotel.setCity(lines[i]);
-        i++;
-        newHotel.setStreet(lines[i]);
+            nHotel.setCountry(myList[i]);
+            i++;
+            nHotel.setCity(myList[i]);
+            i++;
+            nHotel.setStreet(myList[i]);
+            i++;
+            HotelMap.add(nHotel);
 
-            HotelMap.add(newHotel);
+            }
 
         return HotelMap;
     }
 
-    public static ArrayList<Hotel> findStringByName(ArrayList<Hotel> HotelMaps, String name) throws Exception {
+    //делаем из стринга массив стрингов
+    //каждый стринг преобразуем в нужное значение
 
-        ArrayList<Hotel> hotelsFiles = new ArrayList<>();
+/*public  static ArrayList<Hotel> stringByName(ArrayList<Hotel> HotelMap, String name){
+    for (Hotel hotels : HotelMap) {
+        HotelMap = hotels.getName().contains(name);
 
-            for (Hotel hotels : HotelMaps) {
-                if (hotels.getName().equals(name)) {
-                    hotelsFiles.add(hotels);
-                    return hotelsFiles;
+        }
+}*/
+
+
+    public static ArrayList<Hotel> findStringByName(ArrayList<Hotel> HotelMap, String name) throws Exception {
+
+
+            for (Hotel hotels : HotelMap) {
+                if (hotels.getName().contains(name)) {
+                    return HotelMap;
                 }
             }
 
-         throw new Exception  ( "There is no file with current name!");
+             throw new Exception("There is no file with current name!");
     }
-    
-    public static ArrayList<Hotel> findStringByCity(ArrayList<Hotel> HotelMaps, String city) throws Exception {
 
-        ArrayList<Hotel> hotelsFiles = new ArrayList<>();
+    public static ArrayList<Hotel> findStringByCity(ArrayList<Hotel> HotelMaps, String city) throws Exception {
+        //как  мне сделать такую конструкцию
 
         for (Hotel hotels : HotelMaps) {
-            if (hotels.getCity().equals(city)) {
-                hotelsFiles.add(hotels);
-                return hotelsFiles;
+            if (hotels.getCity().contains(city)) {
+                return HotelMaps;
             }
         }
-
-        throw new Exception  ( "There is no file with current city!");
+        throw new Exception("There is no file with current city!");
     }
 }
+
+
 

@@ -48,6 +48,67 @@ public class UserRepository {
             System.out.println(usMap);
         return user;
     }
+    /*
+     private static ArrayList<Hotel> readFromFile(String path) throws Exception {//
+
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                //делаем из стринга массив стрингов
+                //каждый стринг преобразуем в нужное значение
+
+                String[] lines = line.split("[ ]");
+                convertDateFromFile(lines);
+
+                //System.out.println(line + "  read");
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File does not exist");
+        } catch (IOException e) {
+            System.out.println("Reading from file " + path + " failed");
+        }
+
+        return HotelMap;
+    }
+
+
+
+    public static ArrayList<Hotel> convertDateFromFile(String[] lines) {
+        Hotel newHotel = new Hotel(00, null, null, null, null);
+
+        int i = 0;
+
+        byte[] convBytes = lines[i].getBytes(); //
+
+        if (convBytes.equals(null)){
+            long id = (CreateId(0, 200));
+            newHotel.setId(id);
+        }
+
+        else {
+
+            newHotel.setId(convBytes[i]);
+            i++;
+        }
+        newHotel.setName(lines[i]);
+        i++;
+        newHotel.setCountry(lines[i]);
+        i++;
+        newHotel.setCity(lines[i]);
+        i++;
+        newHotel.setStreet(lines[i]);
+
+            HotelMap.add(newHotel);
+
+        return HotelMap;
+    }
+
+
+
+     */
 
     private static StringBuffer readFromFile(Map <Integer,User> usMap) {
         StringBuffer res = new StringBuffer();

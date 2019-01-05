@@ -28,30 +28,15 @@ public class DemoUser {
 
         User user1 = new User(111,"Dimon","Ukraine",rooms);
 
-       /*  private long id;
-    private String country;
-    private String city;
-    private  String street;*/
        //Calendar d1 =  Calendar.set(year + 1900, 05, 18);
         //GregorianCalendar calendar1 = new GregorianCalendar(2018,Calendar.DECEMBER,29);
 
-        /* public class Room
-        private long id;
-    private int numbersOfGuests;
-    private double price;
-    private boolean breakfastIncluded;
-    private boolean petsAllowed;
-    private Date dateAvableFrom;
-    private Hotel hotel;
-         */
-
-        System.out.println("registerUser:   ");
+        System.out.println("registerUser:  ");
         UserController.registerUser(user1);
         System.out.println();
         System.out.println("findHotelByName:   ");
-        HotelController.findHotelByName("KievPalace");
+        HotelController.findHotelByName("HersonPalace","C:/Users/slash22/Desktop/HotelDb.txt");
         System.out.println("findHotelByCity:   ");
-        HotelController.findHotelByCity("Herson");
+        HotelController.findHotelByCity("Herson","C:/Users/slash22/Desktop/HotelDb.txt");
     }
-
 }

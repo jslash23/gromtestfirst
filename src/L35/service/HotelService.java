@@ -3,6 +3,9 @@ package L35.service;
 import L35.model.Hotel;
 import L35.repository.HotelRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class HotelService   {
 
@@ -16,10 +19,10 @@ public class HotelService   {
        private  String street;
         */
 
-    public  String findHotelByName  (String name) throws Exception {
+    public ArrayList<Hotel> findHotelByName  (String name, String path) throws Exception {
 
             if (ValidateName(name)){
-                return hotelRepository.findHotelByName(name);
+                return hotelRepository.findHotelByName(name, path);
             }
 
             System.err.println("you filds can't be null!");
@@ -36,10 +39,10 @@ public class HotelService   {
         return false;
     }
 
-    public  String findHotelByCity (String city) throws Exception {
+    public  ArrayList<Hotel> findHotelByCity (String city,String path) throws Exception {
 
         if (ValidateCity(city)){
-            return hotelRepository.findHotelByCity(city);
+            return hotelRepository.findHotelByCity(city,path);
         }
 
         System.err.println("you filds can't be null!");
