@@ -24,7 +24,6 @@ public class HotelRepository {
 
         ArrayList <Hotel> wF = writeToFile(readFromFile(path));
         hotelsByName = findStringByName(wF, name);
-       //String hotelsByName1 = hotelsByName.toString();
         System.out.println(hotelsByName);
         return hotelsByName;
     }
@@ -32,7 +31,6 @@ public class HotelRepository {
     public ArrayList<Hotel> findHotelByCity(String city, String path) throws Exception {
 
         hotelsByCity = findStringByCity(writeToFile(readFromFile(path)), city);
-        //String hotelsByCity = Hotels.toString();
         System.out.println(hotelsByCity);
         return hotelsByCity;
     }
@@ -46,8 +44,7 @@ public class HotelRepository {
         return i;
     }
 
-
-    //тут нужно использовать мап иначе затирается предыдущий объект хостел
+    
     private static StringBuffer readFromFile(String path) throws Exception {//
 
         StringBuffer res = new StringBuffer();
@@ -80,22 +77,6 @@ public class HotelRepository {
                 nHotel.setId(id);
             }
 
-            //String s = myList[i];
-            //String s = myList[i];
-            // long n = Long.valueOf(long);
-            //long number = Long.valueOf(s).longValue();
-            //Long  sNew = new Long(s);
-
-            /*try {
-                long number  = Long.parseLong(s);
-
-            } catch (NumberFormatException e) {
-                System.out.println(s + " is not a valid number.");
-            }*/
-
-            //long number = new Long(s).longValue();
-            //long n = Long.parseLong(s);
-
             nHotel.setName(myList[i]);
             i++;
             nHotel.setCountry(myList[i]);
@@ -111,16 +92,6 @@ public class HotelRepository {
         return HotelMap;
     }
 
-    //делаем из стринга массив стрингов
-    //каждый стринг преобразуем в нужное значение
-
-/*public  static ArrayList<Hotel> stringByName(ArrayList<Hotel> HotelMap, String name){
-    for (Hotel hotels : HotelMap) {
-        HotelMap = hotels.getName().contains(name);
-
-        }
-}*/
-
 
     public static ArrayList<Hotel> findStringByName(ArrayList<Hotel> HotelMap, String name) throws Exception {
 
@@ -135,7 +106,6 @@ public class HotelRepository {
     }
 
     public static ArrayList<Hotel> findStringByCity(ArrayList<Hotel> HotelMaps, String city) throws Exception {
-        //как  мне сделать такую конструкцию
 
         for (Hotel hotels : HotelMaps) {
             if (hotels.getCity().contains(city)) {
