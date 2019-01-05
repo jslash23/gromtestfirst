@@ -7,9 +7,9 @@ import L35.service.UserService;
 public class UserController {
     private static UserService userService = new UserService();//зависимость
 
-   public static User registerUser(User user){
+   public static User registerUser(User user,String path){
 
-        return userService.registerUser(user);//тут должна быть логика
+        return userService.registerUser(user, path);//тут должна быть логика
     }
 
 

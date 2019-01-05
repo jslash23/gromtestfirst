@@ -10,7 +10,7 @@ public class UserService implements Validation{
 
     private UserRepository userRepository = new UserRepository();
 
-    public User registerUser  (User user) {
+    public User registerUser  (User user, String path) {
 
        //check business logic
        //объекты не должны содержать пустых полей
@@ -20,7 +20,7 @@ public class UserService implements Validation{
        //возвращаем то что вернул метод registerUser нашего userRepository
 
        if (Validate(user.getUserName(), user.getCountry(), user.getRoomsReserved())){
-           return userRepository.registerUser(user);
+           return userRepository.registerUser(user,path);
            }
        System.err.println("you filds can't be null!");
        return null;

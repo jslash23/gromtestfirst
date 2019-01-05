@@ -44,7 +44,7 @@ public class HotelRepository {
         return i;
     }
 
-    
+
     private static StringBuffer readFromFile(String path) throws Exception {//
 
         StringBuffer res = new StringBuffer();

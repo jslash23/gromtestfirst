@@ -31,6 +31,22 @@ public class User {
         return roomsReserved;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setRoomsReserved(List<Room> roomsReserved) {
+        this.roomsReserved = roomsReserved;
+    }
+
     @Override
     public String toString() {
         return "User{" +

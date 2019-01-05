@@ -32,7 +32,7 @@ public class DemoUser {
         //GregorianCalendar calendar1 = new GregorianCalendar(2018,Calendar.DECEMBER,29);
 
         System.out.println("registerUser:  ");
-        UserController.registerUser(user1);
+        UserController.registerUser(user1,"C:/Users/slash22/Desktop/RepositoryDb.txt");
         System.out.println();
         System.out.println("findHotelByName:   ");
         HotelController.findHotelByName("HersonPalace","C:/Users/slash22/Desktop/HotelDb.txt");
