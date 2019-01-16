@@ -1,6 +1,7 @@
 package L35.service;
 
 import L35.model.Room;
+import L35.model.User;
 
 import java.util.List;
 
@@ -16,13 +17,4 @@ public interface Validation  {
 
     boolean Validate (String userName, String country, List<Room> roomsReserved);
 
-    /*
-    private long id;
-    private String name;
-    private String country;
-    private String city;
-    private  String street;
-     */
-
-    //boolean ValidateName (String name);
 }

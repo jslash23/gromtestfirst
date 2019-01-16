@@ -1,20 +1,16 @@
 package L35.demo;
 
 import L35.controller.HotelController;
+import L35.model.Hotel;
 import L35.model.Room;
 import L35.model.User;
-import L35.model.Hotel;
-import L35.controller.UserController;
+
 
 import java.util.ArrayList;
-
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
-public class DemoUser {
-
-    public static void main(String[] args)throws Exception{
+public class DemoHotel {
+    public static void main(String[] args) throws Exception {
 
         ArrayList<Room> rooms = new ArrayList<>();
         ArrayList<Hotel> hotels = new ArrayList<>();
@@ -28,12 +24,11 @@ public class DemoUser {
 
         User user1 = new User(111,"Dimon","Ukraine",rooms);
 
-       //Calendar d1 =  Calendar.set(year + 1900, 05, 18);
-        //GregorianCalendar calendar1 = new GregorianCalendar(2018,Calendar.DECEMBER,29);
-
-        System.out.println("registerUser:  ");
-        UserController.registerUser(user1);
-        System.out.println();
-
+        System.out.println("findHotelByName:   ");
+        HotelController.findHotelByName("KievPalace");
+        System.out.println("findHotelByCity:   ");
+        HotelController.findHotelByCity("Herson");
+        HotelController.addHotel(hotel2);
+        HotelController.deleteHotel(150);
     }
 }

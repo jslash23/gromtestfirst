@@ -17,20 +17,22 @@ public class UserRepository {
     //после замапивания зписываем наш мап файл в файл на рабочем столе
 
 
-    public User registerUser(User user, String fileToPath) {
+    public User registerUser(User user) {
         //save user to db (file)
         //юзер на вход передаётся без поля id потому что айдишник генерем мы
         //юзер ай ди не вводит
 
         ArrayList<User> usMap = new ArrayList<>();
+        String fileToPath = "C:/Users/slash22/Desktop/RepositoryDb.txt";
 
 //айдишник должен генерится с уникальным номером, он не должен повторяться
-        writeToFile((fileToPath),readFromFile(user));
+        writeToFile((fileToPath),readFromUser(user));
+
             System.out.println("File user writen saccesfully");
             return user;
         }
 
-    private static StringBuffer readFromFile(User user) {
+    private static StringBuffer readFromUser(User user) {
         StringBuffer res = new StringBuffer();
         long id = (CreateId(0, 200));
         user.setId(id);

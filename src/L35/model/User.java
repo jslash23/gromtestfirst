@@ -7,6 +7,7 @@ public class User {
     private String userName;
     private String country;
     private List <Room> roomsReserved;
+    public enum UserType {ADMIN, USER;}
 
     public User(long id, String userName, String country, List<Room> roomsReserved) {
         this.id = id;
